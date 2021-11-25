@@ -1,0 +1,88 @@
+body {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    background-image: url('img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.game-board table {
+    table-layout: fixed;
+    background-color: rgb(182, 182, 182, 0.6);
+    margin: 0 auto;
+    margin-top: 5px;
+    border-radius: 7px;
+}
+
+.game-board td {
+    height: 25px;
+    width: 25px;
+    border: solid rgb(143, 143, 143);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    background-color: rgb(92, 92, 92);
+    border-radius: 3px;
+}
+
+footer {
+    font-family: 'Courier New', monospace;
+    background-color: rgb(156, 154, 154, 0.5);
+    color:black;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.dropdown {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.dropdown button {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    font-family: 'Courier New', monospace;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+.dropdown-content a:hover {background-color: #ddd;}
+  
+.dropdown:hover .dropdown-content {display: block;}
+
+.help-bar button {
+    margin-top: 5px;
+}
+
+.help-bar p {
+    background-color: rgb(228, 225, 225, 0.7);
+    margin-top: 0px;
+    /* width: fit-content; */
+    /* margin-left: 49.8%; */
+    margin-left: 45%;
+    margin-right: 45%;
+}

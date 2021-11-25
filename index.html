@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body onload="initGame()">
+
+    <div class="dropdown">
+        <button>Difficulty</button>
+        <div class="dropdown-content">
+          <a onclick="changeDifficulty(0)">Easy</a>
+          <a onclick="changeDifficulty(1)">Normal</a>
+          <a onclick="changeDifficulty(2)">Hard</a>
+          <a onclick="sevenBoom()">7 BOOM!</a>
+          <a onclick="customField()">Custom</a>
+        </div>
+    </div>
+
+    <dev class="score-board">
+        <span>LIVES LEFT: 3</span>
+        <button onclick="restartGame()">😀</button>
+        <p></p>
+        <div class="stop-watch">Current Time: 00:00:00</div>
+        <div class="best-time"><p>Best Times:</p>
+            <span class="easy">Easy: </span>
+            <span class="normal">Normal: </span>
+            <span class="hard">Hard: </span>
+        </div>
+    </dev>
+
+
+    <dev class="game-board"></dev>
+
+    <dev class="help-bar">
+        <button class="hints" onclick="hints(this)">💡💡💡</button>
+        <button class="safe-click" onclick="safeClick(this)">Safe Click</button>
+        <button class="undo-button" onclick="undo()">Undo</button>
+        <p>3 Left</p>
+    </dev>
+
+    <footer>Copyright © Written & Directed by Yarden Levy Inc. </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/additions.js"></script>
+</body>
+</html>
