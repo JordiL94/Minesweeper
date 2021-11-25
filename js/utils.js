@@ -1,7 +1,5 @@
 'use strict'
 
-// TODO: remove unnecessary util functions
-
 // returns a random numbers between two inputs (excluding the maximum)
 function getRandomInt(min, max) {
     min = Math.ceil(min);

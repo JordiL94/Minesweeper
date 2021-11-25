@@ -45,6 +45,7 @@ function hideHints(board, rowIdx, colIdx) {
 
             if (j < 0 || j > board[0].length - 1) continue;
             if(board[i][j].isMarked) continue;
+            if(board[i][j].isMine) continue;
             if(board[i][j].wasShown) continue;
 
             board[i][j].isShown = false;

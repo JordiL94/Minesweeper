@@ -4,7 +4,6 @@ const MINE = '💥';
 const PLAYER = '😀';
 const WINNER = '😎';
 const DEAD = '😫';
-const CURIOUS = '😮';
 const FLAG = '🚩';
 
 

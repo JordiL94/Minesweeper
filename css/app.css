@@ -81,8 +81,6 @@ footer {
 .help-bar p {
     background-color: rgb(228, 225, 225, 0.7);
     margin-top: 0px;
-    /* width: fit-content; */
-    /* margin-left: 49.8%; */
     margin-left: 45%;
     margin-right: 45%;
 }
