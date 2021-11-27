@@ -198,6 +198,7 @@ function customField() {
     document.querySelector('.score-board p').innerText = '';
 
     gLevel.LIVES = 3;
+    gLevel.MINES = 0;
     gLevel.SIZE = +prompt('State field size:');
     gCustom = true;
     alert('Create mines by clicking on the cell you want them to be placed at. When you\'re done go back to the difficulty menu and click "Custom" again.');

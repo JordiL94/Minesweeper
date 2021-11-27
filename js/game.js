@@ -165,7 +165,7 @@ function cellClicked(elCell, i, j) {
 
         if(gIsSevenBOOM) {
             minesSevenBoom();
-        } else if(!gCustom) {
+        } else {
             spawnMines(i, j);
         }
         
