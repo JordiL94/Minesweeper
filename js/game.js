@@ -142,22 +142,30 @@ function cellClicked(elCell, i, j) {
         return;
     }
 
+    if(!gGame.isOn) return;
+    if(gBoard[i][j].isMarked) return;
+    if(gBoard[i][j].isShown) return;
+    if(gFirstTurn && !gHint) gBoardMemory.push(copyMat(gBoard));
+
     if(!gFirstTurn) {
 
         gFirstTurn = true;
 
-        var startTime = new Date().getTime();
-        if(gLevel.SIZE === 4) {
-            localStorage.setItem('new easy', startTime);
-        } else if(gLevel.SIZE === 8) {
-            localStorage.setItem('new normal', startTime);
-        } else if(gLevel.SIZE === 12) {
-            localStorage.setItem('new hard', startTime);
+        if(!gCustom) {
+            var startTime = new Date().getTime();
+
+            if(gLevel.SIZE === 4) {
+                localStorage.setItem('new easy', startTime);
+            } else if(gLevel.SIZE === 8) {
+                localStorage.setItem('new normal', startTime);
+            } else if(gLevel.SIZE === 12) {
+                localStorage.setItem('new hard', startTime);
+            }
         }
 
         if(gIsSevenBOOM) {
             minesSevenBoom();
-        } else {
+        } else if(!gCustom) {
             spawnMines(i, j);
         }
         
@@ -165,28 +173,28 @@ function cellClicked(elCell, i, j) {
         setTimer();
     }
 
-    if(!gGame.isOn) return;
-    if(gBoard[i][j].isMarked) return;
-    if(gBoard[i][j].isShown) return;
-
     if(gHint) {
         gGame.isOn = false;
         expandShown(gBoard, i, j);
+        
         setTimeout(() => {
             hideHints(gBoard, i, j);
         }, 1000);
+
         return;
     }
 
     if (gBoard[i][j].isMine) {
+
         elCell.innerText = MINE;
         elCell.style.background = 'red';
         gBoard[i][j].isShown = true;
         gLevel.LIVES--;
         gGame.markedCount++;
+
         announceLives(gLevel.LIVES);
         checkGameOver();
-        gBoardMemory.push(copyMat(gBoard));
+
         return;
     }
         
@@ -197,6 +205,8 @@ function cellClicked(elCell, i, j) {
 
 function cellMarked(i, j) {
 
+    gBoardMemory.push(copyMat(gBoard));
+
     if(!gGame.isOn) return;
     if(gBoard[i][j].isShown) return;
     
@@ -204,14 +214,12 @@ function cellMarked(i, j) {
         gBoard[i][j].isMarked = false;
         gGame.markedCount--;
     } else {
-        gBoard[i][j].isMarked =true;
+        gBoard[i][j].isMarked = true;
         gGame.markedCount++;
     }
 
     renderBoard(gBoard, '.game-board');
     checkGameOver();
-
-    gBoardMemory.push(copyMat(gBoard));
 }
 
 
@@ -241,7 +249,6 @@ function expandShown(board, rowIdx, colIdx) {
         }
 
         renderBoard(board, '.game-board');
-        gBoardMemory.push(copyMat(gBoard));
         return;
     } 
 
@@ -268,7 +275,6 @@ function expandShown(board, rowIdx, colIdx) {
     }
 
     renderBoard(board, '.game-board');
-    gBoardMemory.push(copyMat(gBoard));
 }
 
 
@@ -305,7 +311,7 @@ function gameWon() {
 
     gGame.isOn = false;
     stopTime = true;
-    findBestTime();
+    if(!gCustom) findBestTime();
     document.querySelector('.score-board button').innerText = WINNER;
 }
 
@@ -390,7 +396,6 @@ function undo() {
     
     if(gBoardMemory.length === 0) return;
     gBoard = gBoardMemory.pop();
-    console.log(gBoard);
     renderBoard(gBoard, '.game-board');
 }
 

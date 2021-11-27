@@ -11,7 +11,7 @@ body {
     table-layout: fixed;
     background-color: rgb(182, 182, 182, 0.6);
     margin: 0 auto;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     border-radius: 7px;
 }
 
@@ -76,11 +76,53 @@ footer {
 
 .help-bar button {
     margin-top: 5px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: gray;
+    background-color: blanchedalmond;
 }
 
 .help-bar p {
-    background-color: rgb(228, 225, 225, 0.7);
+    background-color: rgba(255, 235, 205, 0.534);
+    font-size: 15px;
     margin-top: 0px;
-    margin-left: 45%;
-    margin-right: 45%;
+    margin-left: 0px;
+    /* padding: 1px; */
+    padding-left: 2px;
+    padding-right: 2px;
+    display:inline-block; 
+}
+
+.stop-watch {
+    background-color: rgb(182, 180, 180, 0.4);
+    padding-top: 7px;
+}
+
+.best-time {
+    padding: 7px;
+    background-color: rgb(182, 180, 180, 0.4);
+}
+
+.easy {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: rgba(117, 175, 125, 0.4);
+}
+
+.normal {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: rgba(175, 155, 117, 0.4);
+}
+
+.hard {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: rgba(175, 117, 117, 0.4);
 }

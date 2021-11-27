@@ -7,7 +7,7 @@ var gSafeClick;
 var gIsSevenBOOM = false;
 
 var gameBoard = document.querySelector('.game-board');
-gameBoard.oncontextmenu = function (ev) {
+gameBoard.oncontextmenu = () => {
     return false;
 }
 
@@ -53,7 +53,6 @@ function hideHints(board, rowIdx, colIdx) {
     }
 
     renderBoard(board, '.game-board');
-
 }
 
 
@@ -61,6 +60,7 @@ function safeClick() {
 
     if(!gGame.isOn) return;
     if(gSafeClick === 0) return;
+    if(!checkSafeClickAvailable()) return;
 
     gSafeClick--;
 
@@ -88,6 +88,18 @@ function safeClick() {
 }
 
 
+function checkSafeClickAvailable() {
+
+    for(var i = 0; i < gLevel.SIZE; i++) {
+        for(var j = 0; j < gLevel.SIZE; j++) {
+            if(!gBoard[i][j].isShown && !gBoard[i][j].isMine) return true;
+        }
+    }
+
+    return false;
+}
+
+
 function sevenBoom() {
 
     gIsSevenBOOM = !gIsSevenBOOM;
@@ -99,21 +111,22 @@ function sevenBoom() {
 function minesSevenBoom() {
 
     var size = gLevel.SIZE;
-    var sevenCount = 0;
+    var idxCount = 0;
 
     for(var i = 0; i < size; i++) {
         for (var j = 0; j < size; j++) {
-
-            sevenCount++;
-            if(sevenCount === 10) sevenCount = 0;
-
-            if (sevenCount === 8) {
+            
+            if (idxCount % 10 === 7) {
                 gBoard[i][j].isMine = true;
             } else if(((i * size) + j) % 7 === 0 && (i + j) !== 0) {
                 gBoard[i][j].isMine = true;
+            } else if (idxCount >= 70 && idxCount < 80) {
+                gBoard[i][j].isMine = true;
             } else {
-                gBoard[i][j].isMine = false;
+                gBoard[i][j].isMine = false;       
             }
+
+            idxCount++;
         }
     }
 
@@ -149,7 +162,7 @@ function findBestTime() {
         var totalTime = timeFinished - localStorage.getItem('new hard');
         if(localStorage.getItem('hard time') === null || totalTime < localStorage.getItem('hard time')) {
             localStorage.setItem('hard time', totalTime);
-            document.querySelector('.hard').innerText = 'hard: ' + 
+            document.querySelector('.hard').innerText = 'Hard: ' + 
                 (localStorage.getItem('hard time') / 1000) + ' seconds';
         }
     }
@@ -169,7 +182,7 @@ function showBestTime() {
     }
     
     if(localStorage.getItem('hard time') !== null) {
-        document.querySelector('.hard').innerText = 'hard: ' + 
+        document.querySelector('.hard').innerText = 'Hard: ' + 
             (localStorage.getItem('hard time') / 1000);
     }    
 }
@@ -180,6 +193,9 @@ function customField() {
     gBuilding = !gBuilding;
 
     if(!gBuilding) return;
+
+    gIsSevenBOOM = false;
+    document.querySelector('.score-board p').innerText = '';
 
     gLevel.LIVES = 3;
     gLevel.SIZE = +prompt('State field size:');
